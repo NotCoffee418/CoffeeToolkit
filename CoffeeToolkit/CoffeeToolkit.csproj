@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>NotCoffee418</Authors>
+    <PackageProjectUrl>https://github.com/NotCoffee418/CoffeeToolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NotCoffee418/CoffeeToolkit</RepositoryUrl>
+    <Version>1.0.1</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Commonly used functions and classes I would otherwise keep rewriting.</Description>
+  </PropertyGroup>
+
+</Project>
