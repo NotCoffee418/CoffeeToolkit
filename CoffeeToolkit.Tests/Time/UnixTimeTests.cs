@@ -1,4 +1,5 @@
-﻿using CoffeeToolkit.Time;
+﻿using CoffeeToolkit.Extensions;
+using CoffeeToolkit.Time;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,15 @@ namespace CoffeeToolkit.Tests.Time
         {
             DateTime expected = DateTime.Parse(dtStr);
             DateTime actual = UnixTime.ToDateTime(input);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [TestCase("2020-01-01 0:00:00", 1577836800)]
+        public void ToUnixTime_ExtensionMethod(string dtStr, int expected)
+        {
+            DateTime input = DateTime.Parse(dtStr);
+            int actual = input.ToUnixTime();
             Assert.AreEqual(expected, actual);
         }
     }
