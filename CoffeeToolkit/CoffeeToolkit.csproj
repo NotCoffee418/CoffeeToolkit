@@ -6,10 +6,11 @@
     <Authors>NotCoffee418</Authors>
     <PackageProjectUrl>https://github.com/NotCoffee418/CoffeeToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NotCoffee418/CoffeeToolkit</RepositoryUrl>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Commonly used functions and classes I would otherwise keep rewriting.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReleaseNotes>Added Progress.ProgressTracker</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,10 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
