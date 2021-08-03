@@ -54,5 +54,21 @@ namespace CoffeeToolkit.Tests.Progress
 
             Assert.AreEqual(2, eventFiredCount);
         }
+
+        [Test]
+        public void ProgressEvent_IncremenOne_ValidatePercentage()
+        {
+            ProgressTracker pt = new ProgressTracker(200);
+            int eventFiredCount = 0;
+            pt.ProgressChanged += (s, e) =>
+            {
+                eventFiredCount++;
+                if (eventFiredCount == 1)
+                    Assert.AreEqual(0.5, e.ProgressPercentage);
+            };
+            pt.IncrementProgress();
+
+            Assert.AreEqual(1, eventFiredCount);
+        }
     }
 }

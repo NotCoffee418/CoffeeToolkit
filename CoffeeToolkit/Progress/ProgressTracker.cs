@@ -133,7 +133,7 @@ namespace CoffeeToolkit.Progress
         /// </summary>
         /// <returns></returns>
         public float GetProgressPercentage()
-            => (ProcessedItems / TotalItems) * 100;
+            => ((float)ProcessedItems / (float)TotalItems) * 100;
 
 
         public class ProgressChangedEventArgs
