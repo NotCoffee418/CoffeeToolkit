@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoffeeToolkit.Data.Time
+namespace CoffeeToolkit.Time
 {
     public static class Interval
     {
