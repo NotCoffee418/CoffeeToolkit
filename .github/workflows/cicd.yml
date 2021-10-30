@@ -7,10 +7,10 @@ on:
     branches: [ main ]
 
 jobs:
+
+  # Build and test
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -23,3 +23,17 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+  
+  # Publish to nuget
+  deploy:
+    name: Publish NuGet Package
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        PROJECT_FILE_PATH: CoffeeToolkit/CoffeeToolkit.csproj
+        PACKAGE_NAME: CoffeeToolkit
+        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+        
+    
