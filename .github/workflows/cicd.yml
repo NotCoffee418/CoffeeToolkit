@@ -8,8 +8,9 @@ on:
 
 jobs:
 
-  # Build and test
+  # Build, test, publish to nuget
   build:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -23,17 +24,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-  
-  # Publish to nuget
-  deploy:
-    name: Publish NuGet Package
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: brandedoutcast/publish-nuget@v2.5.5
-      with:
-        PROJECT_FILE_PATH: CoffeeToolkit/CoffeeToolkit.csproj
-        PACKAGE_NAME: CoffeeToolkit
-        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-        
-    
+    - name: Pack
+      run: dotnet pack --no-build --configuration Release CoffeeToolkit/CoffeeToolkit.csproj --output .
+    - name: Publish to Nuget
+      run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
