@@ -101,8 +101,12 @@ namespace CoffeeToolkit.Database
                 }
 
                 // Check if migration system is installed, install it if needed
-                long foundTables = await ExecuteScalarAsync<long>(
+                object foundTablesObj = await ExecuteScalarAsync<object>(
                     _dbConnection, isMigrationInstalledCheckQuery);
+
+                // Cast as object, then convert.
+                // some databases return int, some return long
+                int foundTables = Convert.ToInt32(foundTablesObj);
                 if (foundTables == 0)
                     await ExecuteNonQueryAsync(_dbConnection, firstInstallQuery);
 
@@ -165,7 +169,17 @@ namespace CoffeeToolkit.Database
                 // No abtract to avoid including the interface itself
                 .Where(p => !p.Attributes.HasFlag(TypeAttributes.Abstract))
                 // Either undefined namespace or starts with the exact specified namespace
-                .Where(p => migrationNamespace == null || p.Namespace.StartsWith(migrationNamespace))
+                .Where(p =>
+                {
+                    if (migrationNamespace == null)
+                        return true;
+                    // automatic namespace assignment by .NET 6+ results in p.Namespace being null
+                    else if (p.Namespace == null)
+                        throw new Exception(
+                            "Upgrader failed to validate the namespace of an IMigration. " +
+                            "Please manually define a namespace for each IMigration to resolve this issue.");
+                    else return p.Namespace.StartsWith(migrationNamespace);
+                })
                 .ToList()
                 .ForEach(x => result.Add((IMigration)Activator.CreateInstance(x)));
 

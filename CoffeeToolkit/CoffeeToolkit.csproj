@@ -6,11 +6,11 @@
     <Authors>NotCoffee418</Authors>
     <PackageProjectUrl>https://github.com/NotCoffee418/CoffeeToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NotCoffee418/CoffeeToolkit</RepositoryUrl>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Commonly used functions and classes I would otherwise keep rewriting.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>Add DatabaseUpgrader using IMigration</PackageReleaseNotes>
+    <PackageReleaseNotes>DatabaseUpgrader bug fixes</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
