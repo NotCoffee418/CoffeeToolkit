@@ -1,16 +1,13 @@
 ﻿using CoffeeToolkit.Progress;
-using NUnit.Framework;
+using Xunit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace CoffeeToolkit.Tests.Progress
 {
-    class ProgressTrackerTests
+    public class ProgressTrackerTests
     {
-        [Test]
+        [Fact]
         public void IncrementProgress_IncrementFirst_ValidateIncrementAndTimeEstimate()
         {
             // Increment pt 10 times with delay
@@ -22,16 +19,16 @@ namespace CoffeeToolkit.Tests.Progress
             }
 
             // Validate increment
-            Assert.AreEqual(10, pt.ProcessedItems);
-            Assert.AreNotEqual(DateTime.MinValue, pt.StartTime);
+            Assert.Equal(10, pt.ProcessedItems);
+            Assert.NotEqual(DateTime.MinValue, pt.StartTime);
 
             // Validate time estimate
             var estMs = pt.GetEstimatedRemainingTime().TotalMilliseconds;
-            Assert.GreaterOrEqual(estMs, 1000);
-            Assert.LessOrEqual(estMs, 1500);
+            Assert.True(estMs >= 1000);
+            Assert.True(estMs <= 1500);
         }
 
-        [Test]
+        [Fact]
         public void ProgressEvent_IncrementTwo_ValidateEventsFired()
         {
             ProgressTracker pt = new ProgressTracker(2);
@@ -41,21 +38,21 @@ namespace CoffeeToolkit.Tests.Progress
                 eventFiredCount++;
                 if (eventFiredCount == 1)
                 {
-                    Assert.AreEqual(1, e.ItemsProcessed);
+                    Assert.Equal(1, e.ItemsProcessed);
                 }
                 else if (eventFiredCount == 2)
                 {
-                    Assert.AreEqual(0, e.TimeRemaining.TotalMilliseconds);
-                    Assert.AreEqual(100, e.ProgressPercentage);
+                    Assert.Equal(0, e.TimeRemaining.TotalMilliseconds);
+                    Assert.Equal(100, e.ProgressPercentage);
                 }
             };
             pt.IncrementProgress();
             pt.IncrementProgress();
 
-            Assert.AreEqual(2, eventFiredCount);
+            Assert.Equal(2, eventFiredCount);
         }
 
-        [Test]
+        [Fact]
         public void ProgressEvent_IncremenOne_ValidatePercentage()
         {
             ProgressTracker pt = new ProgressTracker(200);
@@ -64,11 +61,11 @@ namespace CoffeeToolkit.Tests.Progress
             {
                 eventFiredCount++;
                 if (eventFiredCount == 1)
-                    Assert.AreEqual(0.5, e.ProgressPercentage);
+                    Assert.Equal(0.5, e.ProgressPercentage);
             };
             pt.IncrementProgress();
 
-            Assert.AreEqual(1, eventFiredCount);
+            Assert.Equal(1, eventFiredCount);
         }
     }
 }

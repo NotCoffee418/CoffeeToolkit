@@ -6,11 +6,11 @@
     <Authors>NotCoffee418</Authors>
     <PackageProjectUrl>https://github.com/NotCoffee418/CoffeeToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NotCoffee418/CoffeeToolkit</RepositoryUrl>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Commonly used functions and classes I would otherwise keep rewriting.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>DatabaseUpgrader bug fixes</PackageReleaseNotes>
+    <PackageReleaseNotes>Add FirstOrNull()</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

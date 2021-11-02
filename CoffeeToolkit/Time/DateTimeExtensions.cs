@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeeToolkit.Extensions
+namespace CoffeeToolkit.Time
 {
     public static class DateTimeExtensions
     {
