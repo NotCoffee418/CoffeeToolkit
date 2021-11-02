@@ -1,5 +1,4 @@
-﻿using CoffeeToolkit.Extensions;
-using CoffeeToolkit.Time;
+﻿using CoffeeToolkit.Time;
 using System;
 using Xunit;
 
