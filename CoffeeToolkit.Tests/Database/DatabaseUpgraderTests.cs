@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CoffeeToolkit.Database;
 using CoffeeToolkit.Tests.TestHelpers;
-using NUnit.Framework;
+using Xunit;
 
 namespace CoffeeToolkit.Tests.Database
 {
-    class DatabaseUpgraderTests
+    public class DatabaseUpgraderTests
     {
-        [Test]
-        [TestCase(null)]
-        [TestCase("CoffeeToolkit.Tests.TestHelpers")]
+        [Theory]
+        [InlineData(null)]
+        [InlineData("CoffeeToolkit.Tests.TestHelpers")]
         public void GetAllMigrations_ExpectDuplicateException(string namespaceBase)
         {
             DatabaseUpgrader<DbConnection> databaseUpgrader =
                 new(MigrationHelpers.GetEmptyDbConnection());
-            Assert.Throws<ArgumentException>(() => databaseUpgrader.GetAllMigrations());
+            Assert.Throws<ArgumentException>(() => databaseUpgrader.GetAllMigrations(namespaceBase));
         }
 
-        [Test]
-        [TestCase("CoffeeToolkit.Tests.TestHelpers.MigratationsOne")]
-        [TestCase("CoffeeToolkit.Tests.TestHelpers.MigratationsTwo")]
+        [Theory]
+        [InlineData("CoffeeToolkit.Tests.TestHelpers.MigratationsOne")]
+        [InlineData("CoffeeToolkit.Tests.TestHelpers.MigratationsTwo")]
         public void GetAllMigrations_ExpectCorrespondingQuery(
             string namespaceBase)
         {
@@ -32,10 +29,10 @@ namespace CoffeeToolkit.Tests.Database
                 new(MigrationHelpers.GetEmptyDbConnection());
 
             List<IMigration> migrations = databaseUpgrader.GetAllMigrations(namespaceBase);
-            Assert.AreEqual(
+            Assert.Equal(
                 $"SELECT {migrations[0].DbVersion};", 
                 migrations[0].MigrationSql);
-            Assert.AreEqual(
+            Assert.Equal(
                 $"SELECT {migrations[1].DbVersion};",
                 migrations[1].MigrationSql);
         }
