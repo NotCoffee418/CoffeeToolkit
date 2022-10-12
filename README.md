@@ -1,19 +1,14 @@
 # CoffeeToolkit
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/NotCoffee418/CoffeeToolkit/CICD?style=for-the-badge)
-[![Nuget](https://img.shields.io/nuget/v/CoffeeToolkit?style=for-the-badge "Nuget")](https://www.nuget.org/packages/CoffeeToolkit)
+[![Nuget](https://img.shields.io/nuget/v/CoffeeToolkit?style=for-the-badge "Nuget")](https://www.nuget.org/packages/CoffeeToolkit.Linq)
 
-CoffeeToolkit is a nuget package containing a variety of useful tools and methods.  
+CoffeeToolkit is a set of Nuget packages containing a variety of useful tools and methods.  
 You can find the documentation for each of it's features in the wiki.
 
-#### Database
-- [DatabaseUpgrader](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Database.DatabaseUpgrader)
-
-#### Progress
-- [ProgressTracker](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Progress.ProgressTracker)
-
-#### Random
-- [Rng](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Random.Rng)
-
-#### Time
-- [DateTimeRounder](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Time.DateTimeRounder)
-- [UnixTime](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Time.UnixTime)
+## Packages
+| Package                                                                                                                                              | Name                     | Documentation                                                                       | Description                                                                                                                                |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| [![Nuget](https://img.shields.io/nuget/v/CoffeeToolkit.Linq?style=for-the-badge "Nuget")](https://www.nuget.org/packages/CoffeeToolkit.Linq)         | CoffeeToolkit.Linq       | No docs yet                                                                         | Collection of useful Linq extensions                                                                                                       |
+| [![Nuget](https://img.shields.io/nuget/v/CoffeeToolkit.Progress?style=for-the-badge "Nuget")](https://www.nuget.org/packages/CoffeeToolkit.Progress) | CoCoffeeToolkit.Progress | [Docs](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Progress.ProgressTracker) | Thread-safe progress tracking methods                                                                                                      |
+| [![Nuget](https://img.shields.io/nuget/v/CoffeeToolkit.Random?style=for-the-badge "Nuget")](https://www.nuget.org/packages/CoffeeToolkit.Random)     | CoffeeToolkit.Random     | [Docs](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Random.Rng)               | Simplified cryptographically secure random number generator for various datatypes using System.Security.Cryptography.RandomNumberGenerator |
+| [![Nuget](https://img.shields.io/nuget/v/CoffeeToolkit.Time?style=for-the-badge "Nuget")](https://www.nuget.org/packages/CoffeeToolkit.Time)         | CoffeeToolkit.Time       | [Docs](https://github.com/NotCoffee418/CoffeeToolkit/wiki/Time)                     | Collection of useful methods for working with time in .NET                                                                                 |
