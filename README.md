@@ -32,7 +32,7 @@ You can find the documentation for each of it's features in the wiki.
             <td><a href="https://www.nuget.org/packages/CoffeeToolkit.Random"><img src="https://img.shields.io/nuget/v/CoffeeToolkit.Random?style=for-the-badge" /></a></td>
             <td>CoffeeToolkit.Random</td>
             <td><a href="https://github.com/NotCoffee418/CoffeeToolkit/wiki/Random.Rng">Docs</a></td>
-            <td>Simplified cryptographically secure random number generator for various datatypes using System.Security.Cryptography.RandomNumberGenerator</td>
+            <td>Simplified cryptographically secure random number<br> generator for various datatypes using<br>System.Security.Cryptography.RandomNumberGenerator</td>
         </tr>
         <tr>
             <td><a href="https://www.nuget.org/packages/CoffeeToolkit.Time"><img src="https://img.shields.io/nuget/v/CoffeeToolkit.Time?style=for-the-badge" /></a></td>
