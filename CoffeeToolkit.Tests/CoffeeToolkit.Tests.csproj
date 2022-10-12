@@ -17,7 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoffeeToolkit\CoffeeToolkit.csproj" />
+    <ProjectReference Include="..\CoffeeToolkit.Linq\CoffeeToolkit.Linq.csproj" />
+    <ProjectReference Include="..\CoffeeToolkit.Progress\CoffeeToolkit.Progress.csproj" />
+    <ProjectReference Include="..\CoffeeToolkit.Random\CoffeeToolkit.Random.csproj" />
+    <ProjectReference Include="..\CoffeeToolkit.Time\CoffeeToolkit.Time.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestHelpers\" />
   </ItemGroup>
 
 </Project>

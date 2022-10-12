@@ -19,15 +19,9 @@ jobs:
         include-prerelease: true
     - name: Install dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build and Pack
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    - name: Pack and publish to Nuget
-      run: |
-        allProjects=("Linq" "OtherProject")
-        for proj in "${allProjects[@]}"
-        do
-            dotnet pack --no-build --configuration Release CoffeeToolkit.$proj/CoffeeToolkit.$proj.csproj --output .       
-        done
-        dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate 
+    - name: Publish to Nuget
+      run: dotnet nuget push nuget/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate 
