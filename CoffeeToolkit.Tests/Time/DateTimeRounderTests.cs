@@ -70,8 +70,8 @@ namespace CoffeeToolkit.Tests.Time
         [Theory]
         [InlineData("2020-01-01 0:00:00", "2020-01-31 23:59:59.999")]
         [InlineData("2020-01-15", "2020-01-31 23:59:59.999")]
-        [InlineData("2022-02-15", "2022-02-29 23:59:59.999")]
-        [InlineData("2021-02-15", "2022-02-28 23:59:59.999")]
+        [InlineData("2024-02-15", "2024-02-29 23:59:59.999")]
+        [InlineData("2021-02-15", "2021-02-28 23:59:59.999")]
         public void GetEndOfMonth_TestResults_UsingExtensionMethod(string inputDtStr, string expectedDtStr)
         {
             DateTime actual = DateTime.Parse(inputDtStr).EndOfMonth();
