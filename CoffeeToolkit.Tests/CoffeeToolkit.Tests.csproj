@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestHelpers\**" />
+    <EmbeddedResource Remove="TestHelpers\**" />
+    <None Remove="TestHelpers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -21,10 +27,6 @@
     <ProjectReference Include="..\CoffeeToolkit.Progress\CoffeeToolkit.Progress.csproj" />
     <ProjectReference Include="..\CoffeeToolkit.Random\CoffeeToolkit.Random.csproj" />
     <ProjectReference Include="..\CoffeeToolkit.Time\CoffeeToolkit.Time.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestHelpers\" />
   </ItemGroup>
 
 </Project>
