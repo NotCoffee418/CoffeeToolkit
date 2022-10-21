@@ -57,20 +57,26 @@ namespace CoffeeToolkit.Tests.Time
             Assert.Equal(DateTime.Parse(expectedDtStr), actual);
         }
 
-        [Fact]
-        public void GetStartOfMonth_TestResults()
+        [Theory]
+        [InlineData("2020-01-31 23:59:59.999", "2020-01-01 0:00:00")]
+        [InlineData("2020-01-15", "2020-01-01 0:00:00")]
+        public void GetStartOfMonth_TestResults_UsingExtensionMethod(string inputDtStr, string expectedDtStr)
         {
-            DateTime input = DateTime.Parse("2020-01-01 0:00:00");
-            DateTime actual = input.StartOfMonth();
-            Assert.Equal(DateTime.Parse("2020-01-01 0:00:00"), actual);
+            DateTime actual = DateTime.Parse(inputDtStr).StartOfMonth();
+            DateTime expected = DateTime.Parse(expectedDtStr);
+            Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void GetEndOfMonth_TestResults()
+        [Theory]
+        [InlineData("2020-01-01 0:00:00", "2020-01-31 23:59:59.999")]
+        [InlineData("2020-01-15", "2020-01-31 23:59:59.999")]
+        [InlineData("2022-02-15", "2022-02-29 23:59:59.999")]
+        [InlineData("2021-02-15", "2022-02-28 23:59:59.999")]
+        public void GetEndOfMonth_TestResults_UsingExtensionMethod(string inputDtStr, string expectedDtStr)
         {
-            DateTime input = DateTime.Parse("2020-01-01 0:00:00");
-            DateTime actual = input.EndOfMonth();
-            Assert.Equal(DateTime.Parse("2020-01-31 23:59:59.999"), actual);
+            DateTime actual = DateTime.Parse(inputDtStr).EndOfMonth();
+            DateTime expected = DateTime.Parse(expectedDtStr);
+            Assert.Equal(expected, actual);
         }
     }
 }
