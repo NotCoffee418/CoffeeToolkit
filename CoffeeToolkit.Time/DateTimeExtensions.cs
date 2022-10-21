@@ -36,5 +36,22 @@
         /// <returns>Rounded DateTime</returns>
         public static DateTime RoundToNearest(this DateTime dt, TimeSpan d)
             => DateTimeRounder.RoundToNearest(dt, d);
+
+        /// <summary>
+        /// Get DateTime for the first tick of the month
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static DateTime StartOfMonth(this DateTime dt)
+            => DateTimeRounder.GetStartOfMonth(dt.Year, dt.Month, dt.Kind);
+
+        /// <summary>
+        /// Get DateTime for the last milisecond of the month
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static DateTime EndOfMonth(this DateTime dt)
+            => DateTimeRounder.GetEndOfMonth(dt.Year, dt.Month, dt.Kind);
+        
     }
 }

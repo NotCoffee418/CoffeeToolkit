@@ -56,5 +56,21 @@ namespace CoffeeToolkit.Tests.Time
             DateTime actual = DateTimeRounder.RoundToNearest(input, TimeSpan.FromHours(1));
             Assert.Equal(DateTime.Parse(expectedDtStr), actual);
         }
+
+        [Fact]
+        public void GetStartOfMonth_TestResults()
+        {
+            DateTime input = DateTime.Parse("2020-01-01 0:00:00");
+            DateTime actual = input.StartOfMonth();
+            Assert.Equal(DateTime.Parse("2020-01-01 0:00:00"), actual);
+        }
+
+        [Fact]
+        public void GetEndOfMonth_TestResults()
+        {
+            DateTime input = DateTime.Parse("2020-01-01 0:00:00");
+            DateTime actual = input.EndOfMonth();
+            Assert.Equal(DateTime.Parse("2020-01-31 23:59:59.999"), actual);
+        }
     }
 }
