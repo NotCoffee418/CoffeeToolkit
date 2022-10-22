@@ -54,7 +54,7 @@ public static class DateTimeRounder
         => new DateTime(year, month, 1, 0,0,0, kind);
 
     /// <summary>
-    /// Get DateTime for the last milisecond of the month
+    /// Get DateTime for the last millisecond of the month
     /// </summary>
     /// <param name="year"></param>
     /// <param name="month"></param>
