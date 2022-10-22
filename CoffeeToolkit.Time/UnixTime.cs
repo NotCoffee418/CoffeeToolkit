@@ -7,22 +7,22 @@ public static class UnixTime
     /// </summary>
     /// <param name="unixTime"></param>
     /// <returns></returns>
-    public static DateTime SecondsToDateTimeUtc(long unixTime)
-        => DateTimeOffset.FromUnixTimeSeconds(unixTime).UtcDateTime;
+    public static DateTime SecondsToDateTimeUtc(long unixTimeSeconds)
+        => DateTimeOffset.FromUnixTimeSeconds(unixTimeSeconds).UtcDateTime;
 
     /// <summary>
     /// Converts Unix time in milliseconds to DateTime
     /// </summary>
     /// <param name="unixTime"></param>
     /// <returns></returns>
-    public static DateTime MillisecondsToDateTimeUtc(long unixTime)
-        => DateTimeOffset.FromUnixTimeMilliseconds(unixTime).UtcDateTime;
+    public static DateTime MillisecondsToDateTimeUtc(long unixTimeMilliseconds)
+        => DateTimeOffset.FromUnixTimeMilliseconds(unixTimeMilliseconds).UtcDateTime;
 
     /// <summary>
     /// Converts value to UTC Unix Time in seconds
     /// </summary>
     /// <param name="dt"></param>
-    /// <param name="castToUtc"></param>
+    /// <param name="castToUtc">Assume literal time is UTC, even if DateTimeKind is not set to UTC</param>
     /// <returns></returns>
     public static long FromDateTimeToSeconds(this DateTime dt, bool castToUtc = false)
         => dt
@@ -33,7 +33,7 @@ public static class UnixTime
     /// Converts value to UTC Unix Time in milliseconds
     /// </summary>
     /// <param name="dt"></param>
-    /// <param name="castToUtc">Set to true when the input DateTime is UTC but it's kind is not specified as UTC.</param>
+    /// <param name="castToUtc">Assume literal time is UTC, even if DateTimeKind is not set to UTC</param>
     /// <returns></returns>
     public static long FromDateTimeToMilliseconds(this DateTime dt, bool castToUtc = false)
         => dt
