@@ -5,13 +5,15 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.Tests", "CoffeeToolkit.Tests\CoffeeToolkit.Tests.csproj", "{CEA98016-1026-4BAA-8061-E7FB7624DDF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeToolkit.Linq", "CoffeeToolkit.Linq\CoffeeToolkit.Linq.csproj", "{354591F8-F5A0-4253-93EC-0A83F93DC8E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.Linq", "CoffeeToolkit.Linq\CoffeeToolkit.Linq.csproj", "{354591F8-F5A0-4253-93EC-0A83F93DC8E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeToolkit.Random", "CoffeeToolkit.Random\CoffeeToolkit.Random.csproj", "{BEB0FED2-69F0-41BE-ACBF-12F0A04B19C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.Random", "CoffeeToolkit.Random\CoffeeToolkit.Random.csproj", "{BEB0FED2-69F0-41BE-ACBF-12F0A04B19C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeToolkit.Time", "CoffeeToolkit.Time\CoffeeToolkit.Time.csproj", "{B982111C-991E-49FB-B9F8-9899A3F2DA10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.Time", "CoffeeToolkit.Time\CoffeeToolkit.Time.csproj", "{B982111C-991E-49FB-B9F8-9899A3F2DA10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeToolkit.Progress", "CoffeeToolkit.Progress\CoffeeToolkit.Progress.csproj", "{111B43EE-4E2E-41F4-87BC-39D0AD340395}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.Progress", "CoffeeToolkit.Progress\CoffeeToolkit.Progress.csproj", "{111B43EE-4E2E-41F4-87BC-39D0AD340395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeToolkit.DependencyInjection", "CoffeeToolkit.DependencyInjection\CoffeeToolkit.DependencyInjection.csproj", "{7C98B53A-7BFD-4C64-ADCF-DA18488414FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{111B43EE-4E2E-41F4-87BC-39D0AD340395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{111B43EE-4E2E-41F4-87BC-39D0AD340395}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{111B43EE-4E2E-41F4-87BC-39D0AD340395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C98B53A-7BFD-4C64-ADCF-DA18488414FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C98B53A-7BFD-4C64-ADCF-DA18488414FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C98B53A-7BFD-4C64-ADCF-DA18488414FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C98B53A-7BFD-4C64-ADCF-DA18488414FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
