@@ -1,4 +1,6 @@
-﻿namespace CoffeeToolkit.DependencyInjection;
+﻿using System.Reflection;
+
+namespace CoffeeToolkit.DependencyInjection;
 
 /*
  * This class is made available under the Unlicense.
@@ -22,57 +24,65 @@ public static class DependencyInjectionExtensions
         
         // Get all applicable types
         partialNamespaces = partialNamespaces.Where(x => x.Length > 0).ToArray();
-        var allTypes = AppDomain.CurrentDomain.GetAssemblies()
+        MatchedInterface[] registerableDependencies = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(x => x.GetReferencedAssemblies())
             .UniqueBy(x => x.FullName)
             // Get all assemblies starting with anything from assemblyPaths
-            .Where(a => partialNamespaces.Select(x => a.FullName.StartsWith(x)).Where(x => x).Any())
+            .Where(a => partialNamespaces.Any(ns => a.FullName.StartsWith(ns)))
             .Select(a => Assembly.Load(a))
             .SelectMany(t => t.GetTypes())
-            .ToList();
-
-        foreach (string assemblyPath in partialNamespaces)
-            foreach (Type t in allTypes)
+            // Type filtering after assembly filtering
+            .Where(t =>
+                t.Namespace is not null && t.IsClass && !t.IsAbstract &&
+                partialNamespaces.Any(ns => t.Namespace.StartsWith(ns)))
+            .Select(t =>
             {
-                // False if ineligible
-                bool isIneligible = t.Namespace is null || // Defined namespace
-                    !t.Namespace.StartsWith(assemblyPath) || // matches assemblyPath
-                    !t.IsClass || t.IsAbstract || // is not interface
-                    !t.GetInterfaces().Any(); // Only contine if it has any interfaces
-                if (isIneligible)
-                    continue;
+                // Get the interface that matches the class if any, null otherwise
+                Type matchingInterface = t.GetInterfaces().Where(x => x.Name == $"I{t.Name}").FirstOrDefault();
+                if (matchingInterface is null)
+                    return null;
 
-                // Attempt to find corresponding interface
-                var correspondingInterfaces = t.GetInterfaces()
-                    .Where(i => i.Name == $"I{t.Name}");
+                // Decide scope
+                DependencyScopeAttribute? scopeAttr = t.GetCustomAttribute<DependencyScopeAttribute>();
+                InstanceScope scope = scopeAttr is null || scopeAttr.Scope == InstanceScope.Undefined 
+                    ? InstanceScope.PerDependency : scopeAttr.Scope;
 
-                // False if no corresponding interface 
-                if (correspondingInterfaces.Count() == 0)
-                    continue;
+                return new MatchedInterface(t, matchingInterface, scope);
+            })
+            .OfType<MatchedInterface>() // null filter
+            .ToArray();
 
-                // Begin registration
-                var typeRegistration = builder.RegisterType(t)
-                    .As(correspondingInterfaces.First());
-
-                // Complete registration with defined scope (if any)
-                DependencyScopeAttribute? scope = t.GetCustomAttribute<DependencyScopeAttribute>();
-                if (scope is null || scope.Scope == InstanceScope.Undefined) // Default
-                    typeRegistration.InstancePerDependency();
-                else 
-                    switch (scope.Scope)
-                    {
-                        case InstanceScope.Single:
-                            typeRegistration.SingleInstance();
-                            break;
-                        case InstanceScope.Lifetime:
-                            typeRegistration.InstancePerLifetimeScope();
-                            break;
-                        case InstanceScope.PerRequest:
-                            typeRegistration.InstancePerRequest();
-                            break;
-                        default:
-                            throw new Exception($"AutoRegister does not know how to handle scope {scope.Scope} for {t.FullName}" );
-                    }
+        // Register all valid types
+        foreach (MatchedInterface mi in registerableDependencies)
+        {
+            var typeRegistration = builder.RegisterType(mi.ClassType).As(mi.InterfaceType);
+            switch (mi.Scope)
+            {
+                case InstanceScope.Single:
+                    typeRegistration.SingleInstance();
+                    break;
+                case InstanceScope.Lifetime:
+                    typeRegistration.InstancePerLifetimeScope();
+                    break;
+                case InstanceScope.PerRequest:
+                    typeRegistration.InstancePerRequest();
+                    break;
+                default:
+                    throw new Exception($"AutoRegister does not know how to handle scope {mi.Scope} for {mi.ClassType.FullName}");
             }
+        }
+    }
+
+    internal record MatchedInterface
+    {
+        internal MatchedInterface(Type classType, Type interfaceType, InstanceScope scope)
+        {
+            ClassType = classType;
+            InterfaceType = interfaceType;
+            Scope = scope;
+        }
+        internal Type ClassType { get; }
+        internal Type InterfaceType { get; }
+        internal InstanceScope Scope { get; }
     }
 }
