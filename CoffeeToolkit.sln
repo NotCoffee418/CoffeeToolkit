@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.Time", "Coffe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.Progress", "CoffeeToolkit.Progress\CoffeeToolkit.Progress.csproj", "{111B43EE-4E2E-41F4-87BC-39D0AD340395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeToolkit.DependencyInjection", "CoffeeToolkit.DependencyInjection\CoffeeToolkit.DependencyInjection.csproj", "{7C98B53A-7BFD-4C64-ADCF-DA18488414FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeToolkit.DependencyInjection", "CoffeeToolkit.DependencyInjection\CoffeeToolkit.DependencyInjection.csproj", "{7C98B53A-7BFD-4C64-ADCF-DA18488414FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
