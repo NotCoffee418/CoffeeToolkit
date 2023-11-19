@@ -18,7 +18,7 @@ jobs:
         include-prerelease: true
     - name: Install dependencies
       run: dotnet restore
-    - name: Build and Pack
+    - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Pack
       run: |
