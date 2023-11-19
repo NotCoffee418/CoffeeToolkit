@@ -58,6 +58,9 @@ public static class DependencyInjectionExtensions
             var typeRegistration = builder.RegisterType(mi.ClassType).As(mi.InterfaceType);
             switch (mi.Scope)
             {
+                case InstanceScope.PerDependency:
+                    typeRegistration.InstancePerDependency();
+                    break;
                 case InstanceScope.Single:
                     typeRegistration.SingleInstance();
                     break;
