@@ -20,15 +20,9 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Pack
-      run: |
-        BRANCH_NAME=${GITHUB_REF#refs/heads/}
-        VERSION=$(date +"%Y.%m.%d.%H%M")
-        if [ "$BRANCH_NAME" = "staging" ]; then
-          VERSION="$VERSION-beta"
-        fi
-        dotnet pack --no-build --configuration Release -p:PackageVersion=$VERSION --output ./nuget
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Pack
+      run: dotnet pack --no-build --configuration Release --output ./nuget
     - name: Publish to Nuget
       run: dotnet nuget push nuget/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate 

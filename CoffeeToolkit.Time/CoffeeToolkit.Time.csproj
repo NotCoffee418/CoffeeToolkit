@@ -7,14 +7,20 @@
     <PackageProjectUrl>https://github.com/NotCoffee418/CoffeeToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NotCoffee418/CoffeeToolkit</RepositoryUrl>
     <Description>Collection of useful methods for working with time in .NET</Description>
+	<Build>$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2000,1,1))).get_TotalDays())</Build>
+	<Revision>$([MSBuild]::Divide($([System.DateTime]::get_Now().get_TimeOfDay().get_TotalMinutes()), 2).ToString('F0'))</Revision>
+	<Version>1.$(Build).$(Revision)</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>
-      </PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
