@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace CoffeeToolkit.DependencyInjection;
+﻿namespace CoffeeToolkit.DependencyInjection;
 
 /*
  * This class is made available under the Unlicense.
@@ -13,10 +11,12 @@ public static class DependencyInjectionExtensions
     /// <summary>
     /// Scan all namespaces starting with an entry in partialNamespaces, and register all classes with their corresponding interface.
     /// This is an easy but limited solution and developers are encouraged to modify the code to suit their needs if they need more control.
+    /// 
+    /// For Autofac, install the nuget package CoffeeToolkit.DependencyInjection.Autofac and use the AutoRegister method in the Autofac container builder.
     /// </summary>
-    /// <param name="builder">Autofac Container Builder</param>
+    /// <param name="services"></param>
     /// <param name="partialNamespaces">All namespaces that start with a value in this array will be scanned.</param>
-    public static void AutoRegister(this ContainerBuilder builder, params string[] partialNamespaces)
+    public static void AutoRegister(this IServiceCollection services, params string[] partialNamespaces)
     {
         // Validate
         if (partialNamespaces == null || partialNamespaces.Length == 0)
@@ -55,24 +55,14 @@ public static class DependencyInjectionExtensions
         // Register all valid types
         foreach (MatchedInterface mi in registerableDependencies)
         {
-            var typeRegistration = builder.RegisterType(mi.ClassType).As(mi.InterfaceType);
-            switch (mi.Scope)
+            services.Add(new ServiceDescriptor(mi.InterfaceType, mi.ClassType, mi.Scope switch
             {
-                case InstanceScope.PerDependency:
-                    typeRegistration.InstancePerDependency();
-                    break;
-                case InstanceScope.Single:
-                    typeRegistration.SingleInstance();
-                    break;
-                case InstanceScope.Lifetime:
-                    typeRegistration.InstancePerLifetimeScope();
-                    break;
-                case InstanceScope.PerRequest:
-                    typeRegistration.InstancePerRequest();
-                    break;
-                default:
-                    throw new Exception($"AutoRegister does not know how to handle scope {mi.Scope} for {mi.ClassType.FullName}");
-            }
+                InstanceScope.PerDependency => ServiceLifetime.Transient,
+                InstanceScope.Single => ServiceLifetime.Singleton,
+                InstanceScope.Lifetime => ServiceLifetime.Scoped,
+                InstanceScope.PerRequest => ServiceLifetime.Scoped,
+                _ => throw new Exception($"AutoRegister does not know how to handle scope {mi.Scope} for {mi.ClassType.FullName}")
+            }));
         }
     }
 
